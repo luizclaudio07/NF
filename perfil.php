@@ -174,13 +174,25 @@ border-radius: 4px;
 							WHERE A.CODPEDIDO = ".$a[$i]['PEDIDO'];
 
 						$b = $bd->query($b);
+						$statusPedido = utf8_encode($a[$i]['STATUS']);
+						$corcomponente = '';
+
+						if ($statusPedido == 'CANCELADO'){
+							$corcomponente = 'danger';
+
+						} else if($statusPedido == 'PENDENTE'){
+							$corcomponente = 'primary';	
+
+						} else if($statusPedido == 'FINALIZADO'){
+							$corcomponente = 'success';	
+						}
 
 						echo "<div class=\"row\">" .
 						"<div class=\"col-md-12\">" .
-						"<div class=\"panel panel-primary\" id=\"componente\">".
+						"<div class=\"panel panel-".$corcomponente."\" id=\"componente\">".
 						"<div class=\"panel-heading\">".
 						"<h3 class=\"panel-title\">Pedido ".$a[$i]['PEDIDO']." modelo - Status: ".utf8_encode($a[$i]['STATUS'])."</h3>".
-						"<button class=\"btn btn-primary btn-clickable pull-right\" id=\"btnMais\" style=\"width:30px;height:30px; padding: 0;\"><span class=\"glyphicon glyphicon-chevron-down\" aria-hidden=\"true\"></span></button>".
+						"<button class=\"btn btn-".$corcomponente." btn-clickable pull-right\" id=\"btnMais\" style=\"width:30px;height:30px; padding: 0;\"><span class=\"glyphicon glyphicon-chevron-down\" aria-hidden=\"true\"></span></button>".
 						"</div>".
 						"<div class=\"detalhes\" id=\"detalhes\">".
 						"<div class=\"row\">".

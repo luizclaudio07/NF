@@ -62,7 +62,7 @@
 </head>
 <body>
 	<div class="page-header" style="margin-bottom: 0; padding-bottom: 0; border-bottom: 0;">
-    <h1>Teste</h1>      
+    <h1>&nbsp;</h1>      
   </div>
 	<div id="total" class="container">
 		<p><?php if(!empty($nome_do_usuario[0])){ echo "Olá, " . $nome_do_usuario[0] . ".&nbsp;&nbsp;<span onclick=\"window.location ='fimsessao.php';\" class=\"badge\">Sair</span>";} ?>&nbsp;</p>
