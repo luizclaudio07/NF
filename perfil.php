@@ -142,7 +142,6 @@ border-radius: 4px;
 							A.DATCADASTRO AS 'DATA',
 							SUM(C.VLRPRODUTO) AS 'VALOR',
 							CASE A.STAPEDIDO
-								WHEN 'PN' THEN 'PENDENTE'
 								WHEN 'AP' THEN 'AGUARDANDO PAGAMENTO'
 								WHEN 'PG' THEN 'FINALIZADO'
 								WHEN 'CA' THEN 'CANCELADO'
@@ -180,7 +179,7 @@ border-radius: 4px;
 						if ($statusPedido == 'CANCELADO'){
 							$corcomponente = 'danger';
 
-						} else if($statusPedido == 'PENDENTE'){
+						} else if($statusPedido == 'AGUARDANDO PAGAMENTO'){
 							$corcomponente = 'primary';	
 
 						} else if($statusPedido == 'FINALIZADO'){
