@@ -1,3 +1,18 @@
+<?php 
+
+	function toCPF($val){
+		$val = substr($val, 0,3). '.' . substr($val, 3,3) . '.' . substr($val, 6,3) . '-' . substr($val, 9,2);
+		return $val;
+	}
+
+	function toTelefone($val){
+		
+		return $val;
+	}
+
+ ?>
+
+
 <style type="text/css">
 
 .panel-heading .btn-clickable{
@@ -45,12 +60,14 @@ border-radius: 4px;
 			$x = "SELECT DISTINCT
 					A.NOMUSER,
 				    A.CPFUSER,
-				    A.DATCADUSER,
-				    B.DESPERFIL,
+				   	DATE_FORMAT(A.DATCADUSER, '%d/%m/%Y') AS DATCADUSER,
+				    CONCAT(A.NIVPERFIL, ' - ', B.DESPERFIL) AS NIVPERFIL,
 				    C.DESCRICAO,
-				    A.DATNASCIMENTO,
+				    DATE_FORMAT(A.DATNASCIMENTO, '%d/%m/%Y') AS DATNASCIMENTO,
 				    A.EMAUSER,
-				    A.NUMTELUSER
+				    A.NUMTELUSER,
+				    A.CIDUSER,
+				    A.ESTUSER
 				    
 				FROM us01 A
 				INNER JOIN US02 B ON A.NIVPERFIL = B.CODNIVPERFIL
@@ -70,22 +87,48 @@ border-radius: 4px;
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
-						<label>Nome:</label>
-						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['CPFUSER']."\"";  ?> disabled="true">
+						<label>CPF:</label>
+						<input type="text" class="form-control" <?php echo "value=\"".toCPF($x[0]['CPFUSER'])."\"";  ?> disabled="true">
 					</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<div class="form-group">
-						<label>Nome:</label>
-						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['DATCADUSER']."\"";  ?> disabled="true">
+					<div class="form-group">
+						<label>Endereço:</label>
+						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['CIDUSER']. ' - ' .$x[0]['ESTUSER'] ."\"";  ?> disabled="true">
 					</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
-						<label>Nome:</label>
-						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['DESCRICAO']."\"";  ?>" disabled="true">
+						<label>E-mail:</label>
+						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['EMAUSER']."\"";  ?> disabled="true">
+					</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<div class="form-group">
+						<label>Membro desde:</label>
+						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['DATCADUSER']."\"";  ?> disabled="true">
+					</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+						<label>Nascimento:</label>
+						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['DATNASCIMENTO']."\"";  ?> disabled="true">
+					</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+						<label>Perfil:</label>
+						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['NIVPERFIL']."\"";  ?> disabled="true">
+					</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group">
+						<label>Status:</label>
+						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['DESCRICAO']."\"";  ?> disabled="true">
 					</div>
 			</div>
 		</div>
