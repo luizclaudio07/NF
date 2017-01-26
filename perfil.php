@@ -65,13 +65,13 @@ border-radius: 4px;
 			<div class="col-md-8">
 					<div class="form-group">
 						<label>Nome:</label>
-						<input type="email" class="form-control" <?php echo "value=\"".$x[0]['NOMUSER']."\"";  ?> disabled="true">
+						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['NOMUSER']."\"";  ?> disabled="true">
 					</div>
 			</div>
 			<div class="col-md-4">
 				<div class="form-group">
 						<label>Nome:</label>
-						<input type="email" class="form-control" <?php echo "value=\"".$x[0]['CPFUSER']."\"";  ?> disabled="true">
+						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['CPFUSER']."\"";  ?> disabled="true">
 					</div>
 			</div>
 		</div>
@@ -79,13 +79,13 @@ border-radius: 4px;
 			<div class="col-md-6">
 				<div class="form-group">
 						<label>Nome:</label>
-						<input type="email" class="form-control" <?php echo "value=\"".$x[0]['DATCADUSER']."\"";  ?> disabled="true">
+						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['DATCADUSER']."\"";  ?> disabled="true">
 					</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 						<label>Nome:</label>
-						<input type="email" class="form-control" <?php echo "value=\"".$x[0]['DESCRICAO']."\"";  ?>" disabled="true">
+						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['DESCRICAO']."\"";  ?>" disabled="true">
 					</div>
 			</div>
 		</div>
