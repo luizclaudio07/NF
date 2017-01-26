@@ -109,6 +109,11 @@ $(document).ready(function($){
 
 		date_default_timezone_set('America/Sao_Paulo');
 		$dtnascimento = $_POST['txtano'].'-'.$_POST['txtmes'].'-'.$_POST['txtdia'];
+		$STANOTEMAUSER = 'A';
+
+		if(isset($_POST['chkNotfEmail'])){
+			$STANOTEMAUSER = 'I';
+		}
 
 		$exec = "INSERT INTO US01 (
 					NOMUSER,
@@ -122,11 +127,12 @@ $(document).ready(function($){
 					STAUSER,
 					NUMTELUSER,
 					CIDUSER,
-					ESTUSER
+					ESTUSER, 
+					STANOTEMAUSER
 				
 				) VALUES (
-					'".$_POST['txtnome']."',
-					'".$_POST['txtemail']."',
+					'".strtoupper($_POST['txtnome'])."',
+					'".strtoupper($_POST['txtemail'])."',
 					'".$_POST['txtuser']."',
 					'".$_POST['txtsenha']."',
 					".str_replace(['.','-'], '', $_POST['txtcpf']).",
@@ -135,16 +141,14 @@ $(document).ready(function($){
 					1,
 					'A',
 					".str_replace(['.','-','(',')', ' '], '', $_POST['txttel']).",
-					'".$_POST['txtcidade']."',
-					'".$_POST['txtestado']."'
+					'".strtoupper($_POST['txtcidade'])."',
+					'".strtoupper($_POST['txtestado'])."',
+					'".$STANOTEMAUSER."'
 
 				);";
 
-			
-				$bd->query($exec);
-				
-				
-
+				$bd->toConsole('batarinha');
+				//$bd->query($exec);
 	}
 
  ?>
@@ -263,7 +267,10 @@ $(document).ready(function($){
 	</div>
 
 	<div class="form-group">
-	<input type="submit" class="btn btn-primary" value="Cadastrar" name="btnCadastrar" />
+		<div class="checkbox">
+			<label><input type="checkbox" value="" name="chkNotfEmail">Não quero receber notificações pelo e-mail sobre novidades neste sistema.</label>
+		</div>
+		<input type="submit" class="btn btn-primary" value="Cadastrar" name="btnCadastrar" />
 	</div>
 </form>
 

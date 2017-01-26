@@ -1,10 +1,11 @@
 <?php 
 	session_start();
+	ini_set('default_charset','UTF-8');
 	include('PDO.class.php');
 	$bd = new SQL;
 
 	if(!empty($_SESSION['NOMUSER'])){
-		$nome_do_usuario = $_SESSION['NOMUSER'];
+		$nome_do_usuario = explode(' ', $_SESSION['NOMUSER']);
 	}
 
 	if(isset($_GET['c']) && $_GET['c'] == 'sair'){
@@ -18,6 +19,7 @@
 <head>
 	<title>NF Corp</title>
 	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -63,7 +65,7 @@
     <h1>Teste</h1>      
   </div>
 	<div id="total" class="container">
-		<p><?php if(!empty($nome_do_usuario)){ echo "Olá, " . $nome_do_usuario . ".&nbsp;&nbsp;<span onclick=\"window.location ='fimsessao.php';\" class=\"badge\">Sair</span>";} ?>&nbsp;</p>
+		<p><?php if(!empty($nome_do_usuario[0])){ echo "Olá, " . $nome_do_usuario[0] . ".&nbsp;&nbsp;<span onclick=\"window.location ='fimsessao.php';\" class=\"badge\">Sair</span>";} ?>&nbsp;</p>
 		<div class="btn-group btn-group-justified">
 			<a href="index.php" class="btn btn-primary">Inicio</a>
 			<a href="#" class="btn btn-primary">Novidades</a>

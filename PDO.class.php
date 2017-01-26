@@ -184,4 +184,10 @@ class SQL
 		header("Status: 500 Internal Server Error");
 		return $exception;
 	}
+
+	public function toConsole($txt){
+		$a = '\\\'';
+		$txt = str_replace('\'',$a, $txt);
+		echo "<script>console.log('".$txt."');</script>";
+	}
 }

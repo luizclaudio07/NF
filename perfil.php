@@ -82,7 +82,7 @@ border-radius: 4px;
 			<div class="col-md-8">
 					<div class="form-group">
 						<label>Nome:</label>
-						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['NOMUSER']."\"";  ?> disabled="true">
+						<input type="text" class="form-control" <?php echo "value=\"".utf8_encode($x[0]['NOMUSER'])."\"";  ?> disabled="true">
 					</div>
 			</div>
 			<div class="col-md-4">
@@ -96,7 +96,7 @@ border-radius: 4px;
 			<div class="col-md-6">
 					<div class="form-group">
 						<label>Endereço:</label>
-						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['CIDUSER']. ' - ' .$x[0]['ESTUSER'] ."\"";  ?> disabled="true">
+						<input type="text" class="form-control" <?php echo "value=\"".utf8_encode($x[0]['CIDUSER']). ' - ' .$x[0]['ESTUSER'] ."\"";  ?> disabled="true">
 					</div>
 			</div>
 			<div class="col-md-6">
@@ -128,7 +128,7 @@ border-radius: 4px;
 			<div class="col-md-4">
 				<div class="form-group">
 						<label>Status:</label>
-						<input type="text" class="form-control" <?php echo "value=\"".$x[0]['DESCRICAO']."\"";  ?> disabled="true">
+						<input type="text" class="form-control" <?php echo "value=\"".utf8_encode($x[0]['DESCRICAO'])."\"";  ?> disabled="true">
 					</div>
 			</div>
 		</div>
@@ -156,7 +156,9 @@ border-radius: 4px;
 							GROUP BY A.CODPEDIDO";
 					$a = $bd->query($a);
 
-					
+					if(count($a) == 0){
+						echo "<div class=\"alert alert-info\"><span class=\"glyphicon glyphicon-flag\" aria-hidden=\"true\"></span><strong> Você ainda não tem nenhum pedido cadastrado</strong></div>";
+					}
 
 					for($i = 0; $i < count($a); $i++){
 						$b = "SELECT DISTINCT
@@ -177,7 +179,7 @@ border-radius: 4px;
 						"<div class=\"col-md-12\">" .
 						"<div class=\"panel panel-primary\" id=\"componente\">".
 						"<div class=\"panel-heading\">".
-						"<h3 class=\"panel-title\">Pedido ".$a[$i]['PEDIDO']." modelo - Status: ".$a[$i]['STATUS']."</h3>".
+						"<h3 class=\"panel-title\">Pedido ".$a[$i]['PEDIDO']." modelo - Status: ".utf8_encode($a[$i]['STATUS'])."</h3>".
 						"<button class=\"btn btn-primary btn-clickable pull-right\" id=\"btnMais\" style=\"width:30px;height:30px; padding: 0;\"><span class=\"glyphicon glyphicon-chevron-down\" aria-hidden=\"true\"></span></button>".
 						"</div>".
 						"<div class=\"detalhes\" id=\"detalhes\">".
@@ -188,8 +190,8 @@ border-radius: 4px;
 						"<p>Forma de pagamento: INCONSISTENTE</p>".
 						"</div>".
 						"<div class=\"col-md-6\">".
-						"<p>Valor total: R$ ".$a[$i]['VALOR']."</p>".
-						"<p>Situação: ".$a[$i]['STATUS']."</p>".
+						"<p>Valor total: R$ ".str_replace('.', ',',$a[$i]['VALOR'])."</p>".
+						"<p>Situação: ".utf8_encode($a[$i]['STATUS'])."</p>".
 						"</div>".
 						"</div>".
 							"<table class=\"table table-bordered\">".
@@ -204,9 +206,9 @@ border-radius: 4px;
 
 								for($j=0; $j < count($b); $j++) { 
 									echo "<tr>".
-									"<td>".$b[$j]['CODIGO']."</td>".
-									"<td>".$b[$j]['NOME']."</td>".
-									"<td>".$b[$j]['FORNECEDOR']."</td>".
+									"<td>".utf8_encode($b[$j]['CODIGO'])."</td>".
+									"<td>".utf8_encode($b[$j]['NOME'])."</td>".
+									"<td>".utf8_encode($b[$j]['FORNECEDOR'])."</td>".
 									"</tr>";
 								}
 
