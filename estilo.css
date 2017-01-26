@@ -1,0 +1,11 @@
+.separadora{
+	width: 100px;
+	min-height: 1px;
+	background-color: white;
+	margin: 4px;
+
+}
+
+header{
+	min-height: 70px;
+}
